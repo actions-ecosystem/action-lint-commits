@@ -6,22 +6,22 @@
 
 ![screenshot](./docs/assets/screenshot.png)
 
-This is a GitHub Action to lint commits on a pull request.
+This is a GitHub Action to lint commits on a pull request based one regex.
 
 ## Inputs
 
-|      NAME      |                            DESCRIPTION                            |   TYPE   | REQUIRED | DEFAULT |
-|----------------|-------------------------------------------------------------------|----------|----------|---------|
-| `github_token` | A GitHub token.                                                   | `string` | `true`   | `N/A`   |
-| `regex`        | The regex for commit messages.                                    | `string` | `true`   | `N/A`   |
-| `format`       | The output format of outputs.{matched_commits,unmatched_commits}. | `string` | `true`   | `N/A`   |
+|      NAME      |                             DESCRIPTION                             |   TYPE   | REQUIRED | DEFAULT |
+| -------------- | ------------------------------------------------------------------- | -------- | -------- | ------- |
+| `github_token` | A GitHub token.                                                     | `string` | `true`   | `N/A`   |
+| `regex`        | The regex for commit messages.                                      | `string` | `true`   | `N/A`   |
+| `format`       | The output format of `outputs.{matched_commits,unmatched_commits}`. | `string` | `true`   | `N/A`   |
 
 ## Outputs
 
-|        NAME         |                 DESCRIPTION                 |   TYPE   |
-|---------------------|---------------------------------------------|----------|
-| `matched_commits`   | The commits which match inputs.regex.       | `string` |
-| `unmatched_commits` | The commits which don't match inputs.regex. | `string` |
+|        NAME         |                  DESCRIPTION                  |   TYPE   |
+| ------------------- | --------------------------------------------- | -------- |
+| `matched_commits`   | The commits which match `inputs.regex`.       | `string` |
+| `unmatched_commits` | The commits which don't match `inputs.regex`. | `string` |
 
 ## Example
 
@@ -56,7 +56,7 @@ jobs:
 
             The format `<type>(<scope>): <subject>` (`^\w+\(.+\): .+`) is acceptable. e.g., `feat(api): Add /users/get`
 
-      - name: Fail when commit lint isn't been passed
+      - name: Fail when commits don't pass lint
         if: ${{ steps.lint-commits.outputs.unmatched_commits != '' }}
         run: exit 1
 
