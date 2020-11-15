@@ -1,0 +1,24 @@
+name: Actions Ecosystem Action Lint Commits
+description: Lint commits on a pull request
+author: Actions Ecosystem
+inputs:
+  github_token:
+    description: A GitHub token.
+    required: true
+  regex:
+    description: The regex for commit messages.
+    required: true
+  format:
+    description: The output format of outputs.{matched_commits,unmatched_commits}.
+    required: true
+outputs:
+  matched_commits:
+    description: The commits which match inputs.regex.
+  unmatched_commits:
+    description: The commits which don't match inputs.regex.
+runs:
+  using: node12
+  main: dist/index.js
+branding:
+  icon: git-commit
+  color: yellow
