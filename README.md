@@ -33,9 +33,9 @@ You would pass the outputs to the inputs of other GitHub Actions to use the resu
 <summary><code>format='markdown'</code></summary>
 
 ```markdown
-- [sha1xxxx](https://github.com/owner/repo/commit/sha1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx): message 1
-- [sha2xxxx](https://github.com/owner/repo/commit/sha2xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx): message 2
-- [sha3xxxx](https://github.com/owner/repo/commit/sha3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx): message 3
+- [`sha1xxxx`](https://github.com/owner/repo/commit/sha1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx): message 1
+- [`sha2xxxx`](https://github.com/owner/repo/commit/sha2xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx): message 2
+- [`sha3xxxx`](https://github.com/owner/repo/commit/sha3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx): message 3
 ```
 
 </details>
