@@ -8,13 +8,15 @@
 
 This is a GitHub Action to lint commits on a pull request based one regex.
 
+It's designed to work with other GitHub Actions so that you can flexibly build your workflow like posting warning comments in GitHub issues, Slack, and anything.
+
 ## Inputs
 
-|      NAME      |                             DESCRIPTION                             |   TYPE   | REQUIRED | DEFAULT |
-| -------------- | ------------------------------------------------------------------- | -------- | -------- | ------- |
-| `github_token` | A GitHub token.                                                     | `string` | `true`   | `N/A`   |
-| `regex`        | The regex for commit messages.                                      | `string` | `true`   | `N/A`   |
-| `format`       | The output format of `outputs.{matched_commits,unmatched_commits}`. | `string` | `true`   | `N/A`   |
+|      NAME      |                                             DESCRIPTION                                             |   TYPE   | REQUIRED | DEFAULT |
+| -------------- | --------------------------------------------------------------------------------------------------- | -------- | -------- | ------- |
+| `github_token` | A GitHub token.                                                                                     | `string` | `true`   | `N/A`   |
+| `regex`        | The regex for commit messages.                                                                      | `string` | `true`   | `N/A`   |
+| `format`       | The output format of `outputs.{matched_commits,unmatched_commits}` in ['markdown', 'json', 'yaml']. | `string` | `true`   | `N/A`   |
 
 ## Outputs
 
@@ -22,6 +24,63 @@ This is a GitHub Action to lint commits on a pull request based one regex.
 | ------------------- | --------------------------------------------- | -------- |
 | `matched_commits`   | The commits which match `inputs.regex`.       | `string` |
 | `unmatched_commits` | The commits which don't match `inputs.regex`. | `string` |
+
+You would pass the outputs to the inputs of other GitHub Actions to use the result of lint.
+
+### Output Examples
+
+<details>
+<summary><code>format='markdown'</code></summary>
+
+```markdown
+- [sha1xxxx](https://github.com/owner/repo/commit/sha1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx): message 1
+- [sha2xxxx](https://github.com/owner/repo/commit/sha2xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx): message 2
+- [sha3xxxx](https://github.com/owner/repo/commit/sha3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx): message 3
+```
+
+</details>
+
+<details>
+<summary><code>format='json'</code></summary>
+
+```json
+[
+  {
+    "message": "message 1",
+    "sha": "sha1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "url": "https://github.com/owner/repo/commit/sha1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  },
+  {
+    "message": "message 2",
+    "sha": "sha2xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "url": "https://github.com/owner/repo/commit/sha2xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  },
+  {
+    "message": "message 3",
+    "sha": "sha3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "url": "https://github.com/owner/repo/commit/sha3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  }
+]
+```
+
+</details>
+
+<details>
+<summary><code>format='yaml'</code></summary>
+
+```yaml
+- message: "message 1"
+  sha: "sha1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  url: "https://github.com/owner/repo/commit/sha1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+- message: "message 2"
+  sha: "sha2xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  url: "https://github.com/owner/repo/commit/sha2xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+- message: "message 3"
+  sha: "sha3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  url: "https://github.com/owner/repo/commit/sha3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+```
+
+</details>
 
 ## Example
 
