@@ -9,7 +9,7 @@ inputs:
     description: The regex for commit messages.
     required: true
   format:
-    description: The output format of outputs.{matched_commits,unmatched_commits}.
+    description: The output format of outputs.{matched_commits,unmatched_commits} in ['markdown', 'json', 'yaml'].
     required: true
 outputs:
   matched_commits:
